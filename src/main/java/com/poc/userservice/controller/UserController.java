@@ -7,7 +7,6 @@ import com.poc.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -27,10 +26,11 @@ public class UserController {
         service.createUser(user);
         return ResponseEntity.ok("User Created SuccessFully");
     }
-    @PatchMapping("user")
-    public ResponseEntity<String> updateUser(@Valid @RequestBody User user){
+    @PatchMapping("user/{id}")
+    public ResponseEntity<String> updateUser(@NotNull @PathVariable String id,@Valid @RequestBody User user){
+        user.setId(id);
         service.updateUser(user);
-        return ResponseEntity.ok("User Created SuccessFully");
+        return ResponseEntity.ok("User Updated SuccessFully");
     }
 
     @GetMapping("users")

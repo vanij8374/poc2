@@ -107,7 +107,7 @@ class UserserviceApplicationTests {
 		user.setSurname("surname");
 
 		HttpEntity<User> httpEntity = new HttpEntity<>(user,httpHeaders);
-		String url = server+port+service+"user";
+		String url = server+port+service+"user/1";
 		restTemplate.getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
 		ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.PATCH,httpEntity, String.class);
 		Assertions.assertEquals(200,responseEntity.getStatusCodeValue(),"Should be 200 and user update");
